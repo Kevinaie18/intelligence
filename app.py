@@ -12,6 +12,10 @@ from typing import Dict, List, Optional, Any
 import streamlit as st
 from dotenv import load_dotenv
 
+# Ajout du dossier src au PYTHONPATH
+import sys
+sys.path.append(str(Path(__file__).parent))
+
 from src.config import STREAMLIT_CONFIG, get_api_key
 from src.modules.audio import AudioExtractor
 from src.modules.transcription import Transcriber

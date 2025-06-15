@@ -14,13 +14,13 @@ import os
 import logging
 from dotenv import load_dotenv
 
-from config import STREAMLIT_CONFIG, get_api_key
-from utils.logging import get_logger
-from utils.validators import validate_urls, validate_theme
-from modules.audio import AudioExtractor
-from modules.transcription import Transcriber
-from modules.analysis import Analyzer
-from utils.metrics import MetricsCollector
+from .config import STREAMLIT_CONFIG, get_api_key
+from .utils.logging import get_logger
+from .utils.validators import validate_urls, validate_theme
+from .modules.audio import AudioExtractor
+from .modules.transcription import Transcriber
+from .modules.analysis import Analyzer
+from .utils.metrics import MetricsCollector
 
 # Setup logging
 logger = get_logger("app")

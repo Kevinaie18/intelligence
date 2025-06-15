@@ -1,16 +1,19 @@
 """
-Module de transcription audio.
+Module de transcription audio des auditions parlementaires.
 """
 
+import asyncio
 import json
 import logging
+import os
 from pathlib import Path
-import asyncio
-from typing import Optional, Dict, Any, List
-from deepgram import Deepgram
+from typing import Dict, List, Optional
 
-from src.utils.retry import async_retry, with_timeout
-from src.utils.metrics import MetricsCollector
+from deepgram import Deepgram
+from dotenv import load_dotenv
+
+from utils.retry import async_retry, with_timeout
+from utils.metrics import MetricsCollector
 
 logger = logging.getLogger(__name__)
 

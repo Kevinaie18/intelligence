@@ -12,14 +12,15 @@ from datetime import datetime
 from typing import Optional, Dict, Any, List
 import os
 import logging
+from dotenv import load_dotenv
 
-from src.config import get_api_key
-from src.utils.logging import get_logger
-from src.utils.validators import validate_urls, validate_theme
-from src.modules.audio import AudioExtractor
-from src.modules.transcription import Transcriber
-from src.modules.analysis import Analyzer
-from src.utils.metrics import MetricsCollector
+from config import STREAMLIT_CONFIG, get_api_key
+from utils.logging import get_logger
+from utils.validators import validate_urls, validate_theme
+from modules.audio import AudioExtractor
+from modules.transcription import Transcriber
+from modules.analysis import Analyzer
+from utils.metrics import MetricsCollector
 
 # Setup logging
 logger = get_logger("app")
@@ -32,6 +33,9 @@ METRICS_DIR.mkdir(parents=True, exist_ok=True)
 
 # Initialisation des métriques
 metrics_collector = MetricsCollector(METRICS_DIR)
+
+# Configuration de l'application
+st.set_page_config(**STREAMLIT_CONFIG)
 
 # Initialisation des modules
 audio_extractor = AudioExtractor(TEMP_DIR, metrics_collector)

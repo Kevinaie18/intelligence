@@ -1,26 +1,23 @@
 """
-Main application entry point for the Parliamentary Intelligence MVP.
-Streamlit interface for parliamentary hearing analysis.
+Application principale pour l'analyse des auditions parlementaires.
 """
 
-import streamlit as st
-from pathlib import Path
 import asyncio
-from concurrent.futures import ThreadPoolExecutor
 import json
-from datetime import datetime
-from typing import Optional, Dict, Any, List
 import os
-import logging
+from pathlib import Path
+from typing import Dict, List, Optional
+
+import streamlit as st
 from dotenv import load_dotenv
 
-from .config import STREAMLIT_CONFIG, get_api_key
-from .utils.logging import get_logger
-from .utils.validators import validate_urls, validate_theme
-from .modules.audio import AudioExtractor
-from .modules.transcription import Transcriber
-from .modules.analysis import Analyzer
-from .utils.metrics import MetricsCollector
+from src.config import STREAMLIT_CONFIG, get_api_key
+from src.modules.audio import AudioExtractor
+from src.modules.transcription import Transcriber
+from src.modules.analysis import Analyzer
+from src.utils.logging import get_logger
+from src.utils.validators import validate_urls, validate_theme
+from src.utils.metrics import MetricsCollector
 
 # Setup logging
 logger = get_logger("app")

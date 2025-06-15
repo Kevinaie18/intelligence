@@ -12,11 +12,17 @@ import yt_dlp
 import ffmpeg
 from loguru import logger
 
-from src.utils.validators import extract_video_id
-from src.utils.retry import async_retry, with_timeout
-from src.utils.metrics import MetricsCollector
+from utils.validators import extract_video_id
+from utils.retry import async_retry, with_timeout
+from utils.metrics import MetricsCollector
 
 logger = logging.getLogger(__name__)
+
+# Configuration audio
+AUDIO_FORMAT = 'wav'
+AUDIO_SAMPLE_RATE = 16000
+AUDIO_CHANNELS = 1
+MAX_AUDIO_DURATION = 3600 * 4  # 4 heures en secondes
 
 class AudioExtractor:
     """Handles YouTube video download and audio conversion."""

@@ -13,7 +13,7 @@ import yt_dlp
 import ffmpeg
 from loguru import logger
 
-from src.config import (
+from ..config import (
     TEMP_DIR,
     AUDIO_FORMAT,
     AUDIO_SAMPLE_RATE,
@@ -21,8 +21,8 @@ from src.config import (
     MAX_AUDIO_DURATION,
 )
 from src.utils.validators import extract_video_id
-from src.utils.retry import async_retry, with_timeout
-from src.utils.metrics import MetricsCollector
+from ..utils.retry import async_retry, with_timeout
+from ..utils.metrics import MetricsCollector
 
 logger = logging.getLogger(__name__)
 

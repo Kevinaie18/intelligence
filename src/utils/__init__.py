@@ -1,3 +1,3 @@
 """
-Package des utilitaires.
+Utilitaires de l'application.
 """ 

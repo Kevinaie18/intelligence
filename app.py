@@ -2,9 +2,14 @@
 Application principale pour l'analyse des auditions parlementaires.
 """
 
+import sys
+import os
+
+# Add src directory to Python path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+
 import asyncio
 import json
-import os
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Dict, List, Optional, Any
@@ -12,17 +17,13 @@ from typing import Dict, List, Optional, Any
 import streamlit as st
 from dotenv import load_dotenv
 
-# Ajout du dossier src au PYTHONPATH
-import sys
-sys.path.append(str(Path(__file__).parent))
-
-from src.config import STREAMLIT_CONFIG, get_api_key
-from src.modules.audio import AudioExtractor
-from src.modules.transcription import Transcriber
-from src.modules.analysis import Analyzer
-from src.utils.logging import get_logger
-from src.utils.validators import validate_urls, validate_theme
-from src.utils.metrics import MetricsCollector
+from config import STREAMLIT_CONFIG, get_api_key
+from modules.audio import AudioExtractor
+from modules.transcription import Transcriber
+from modules.analysis import Analyzer
+from utils.logging import get_logger
+from utils.validators import validate_urls, validate_theme
+from utils.metrics import MetricsCollector
 
 # Setup logging
 logger = get_logger("app")

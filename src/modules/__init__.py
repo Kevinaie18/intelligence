@@ -1,3 +1,3 @@
 """
-Package des modules.
+Modules de traitement de l'application.
 """ 

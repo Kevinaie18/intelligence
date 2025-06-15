@@ -5,8 +5,9 @@ Application principale pour l'analyse des auditions parlementaires.
 import asyncio
 import json
 import os
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Any
 
 import streamlit as st
 from dotenv import load_dotenv
@@ -36,8 +37,8 @@ st.set_page_config(**STREAMLIT_CONFIG)
 
 # Initialisation des modules
 audio_extractor = AudioExtractor(TEMP_DIR, metrics_collector)
-transcriber = Transcriber(get_api_key("DEEPGRAM"), metrics_collector)
-analyzer = Analyzer(get_api_key("OPENAI"), metrics_collector)
+transcriber = Transcriber(get_api_key("DEEPGRAM_API_KEY"), metrics_collector)
+analyzer = Analyzer(get_api_key("OPENAI_API_KEY"), metrics_collector)
 
 def init_session_state():
     """Initialize session state variables."""
@@ -48,9 +49,9 @@ def init_session_state():
     if "audio_extractor" not in st.session_state:
         st.session_state.audio_extractor = AudioExtractor()
     if "transcriber" not in st.session_state:
-        st.session_state.transcriber = Transcriber(get_api_key("DEEPGRAM"))
+        st.session_state.transcriber = Transcriber(get_api_key("DEEPGRAM_API_KEY"))
     if "analyzer" not in st.session_state:
-        st.session_state.analyzer = Analyzer()
+        st.session_state.analyzer = Analyzer(get_api_key("OPENAI_API_KEY"))
 
 async def process_url(url: str, theme: str) -> Dict[str, Any]:
     """
@@ -146,13 +147,6 @@ async def generate_consolidated_analysis(urls: List[str], theme: str) -> Optiona
 
 def main():
     """Main application entry point."""
-    # Page config
-    st.set_page_config(
-        page_title=STREAMLIT_CONFIG["page_title"],
-        page_icon=STREAMLIT_CONFIG["page_icon"],
-        layout=STREAMLIT_CONFIG["layout"],
-    )
-    
     # Initialize session state
     init_session_state()
     

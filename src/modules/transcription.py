@@ -7,15 +7,28 @@ import json
 import logging
 import os
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Any
 
 from deepgram import Deepgram
 from dotenv import load_dotenv
 
 from utils.retry import async_retry, with_timeout
 from utils.metrics import MetricsCollector
+from utils.logging import get_logger
 
 logger = logging.getLogger(__name__)
+
+# Configuration Deepgram
+DEEPGRAM_CONFIG = {
+    'punctuate': True,
+    'language': 'fr',
+    'model': 'nova-3-multilingual',
+    'tier': 'enhanced',
+    'diarize': True,
+    'smart_format': True,
+    'utterances': True,
+    'summarize': True,
+}
 
 class Transcriber:
     """Handles audio transcription using Deepgram API."""

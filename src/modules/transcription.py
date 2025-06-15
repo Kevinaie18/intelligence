@@ -1,20 +1,16 @@
 """
-Transcription module for the Parliamentary Intelligence MVP.
-Handles audio transcription using Deepgram API.
+Module de transcription audio.
 """
 
 import json
 import logging
 from pathlib import Path
-from typing import Optional, Dict, Any, List
 import asyncio
+from typing import Optional, Dict, Any, List
 from deepgram import Deepgram
-from loguru import logger
 
-from ..config import DEEPGRAM_CONFIG
-from ..utils.logging import get_logger
-from ..utils.retry import async_retry, with_timeout
-from ..utils.metrics import MetricsCollector
+from src.utils.retry import async_retry, with_timeout
+from src.utils.metrics import MetricsCollector
 
 logger = logging.getLogger(__name__)
 

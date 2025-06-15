@@ -11,10 +11,10 @@ import asyncio
 from deepgram import Deepgram
 from loguru import logger
 
-from ..config import DEEPGRAM_CONFIG
-from ..utils.logging import get_logger
-from ..utils.retry import async_retry, with_timeout
-from ..utils.metrics import MetricsCollector
+from src.config import DEEPGRAM_CONFIG
+from src.utils.logging import get_logger
+from src.utils.retry import async_retry, with_timeout
+from src.utils.metrics import MetricsCollector
 
 logger = logging.getLogger(__name__)
 

@@ -1,6 +1,5 @@
 """
-Analysis module for the Parliamentary Intelligence MVP.
-Handles generation of structured analysis using GPT-4.
+Module d'analyse de transcription.
 """
 
 import json
@@ -10,12 +9,10 @@ from typing import Optional, Dict, Any, List
 import openai
 from tiktoken import encoding_for_model
 
-from ..config import OPENAI_CONFIG, get_api_key
-from ..utils.logging import get_logger
-from ..utils.retry import async_retry, with_timeout
-from ..utils.metrics import MetricsCollector
-from ..prompts.individual import INDIVIDUAL_PROMPT
-from ..prompts.consolidated import CONSOLIDATED_PROMPT
+from src.utils.retry import async_retry, with_timeout
+from src.utils.metrics import MetricsCollector
+from src.prompts.individual import INDIVIDUAL_PROMPT
+from src.prompts.consolidated import CONSOLIDATED_PROMPT
 
 logger = logging.getLogger(__name__)
 
